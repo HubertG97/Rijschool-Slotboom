@@ -151,3 +151,10 @@ body{
 .row {
     width: 100%;
 }
+
+.dropdown {
+    width: 250px;
+    color: black;
+    border-radius: 5px;
+    height: 50px;
+}

@@ -1,15 +1,6 @@
 
 <?php
-function cel(){
-  $cel = 1;
 
-
-  while($cel < 8){
-
-    echo "<td>$cel</td>";
-    $cel++;
-  }
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +10,10 @@ function cel(){
   <link rel="stylesheet" href="cssb/stylesheet.css" type="text/css" charset="utf-8" />
   <link href="cssb/simple-sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
-  <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <meta charset="UTF-8">
   <title></title>
 </head>
 <body>
@@ -68,9 +62,55 @@ function cel(){
     <div class="col-md-2"></div>
     <div id="jumbo" class="col-md-9 jumbotron">
 
+        <form action="inplannen.php">
+
+
+        <select name="date" class="dropdown">
+
+                <?php
+                $startdate = strtotime("+2 days");
+                $enddate = strtotime("+8 weeks",$startdate);
+
+                while ($startdate < $enddate) {
+                    echo '<option value="$startdate">';
+                    echo date("l M d", $startdate);
+                    echo '</option>';
+                    echo '<br>';
+                    $startdate = strtotime("+1 day", $startdate);
+                }
+
+                ?>
+            </select>
+                <br>
+            <select name="time" class="dropdown">
+
+            <?php
+                $starttime = mktime(8,0);
+                $endtime = strtotime("+11 hours",$starttime);
+
+                while ($starttime < $endtime) {
+                    echo '<option value="$starttime">';
+                    echo date("G:i", $starttime);
+                    echo '</option>';
+                    echo '<br>';
+                    $starttime = strtotime("+1 hour", $starttime);
+                }
+
+
+                ?>
 
 
 
+
+
+
+
+
+
+
+        </select>
+
+        </form>
 
 
 
