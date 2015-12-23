@@ -1,6 +1,42 @@
 
 <?php
 
+
+
+if(isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        $lesdate = $_POST["date"];
+        $lestime = $_POST["time"];
+
+    }
+        include_once 'php/dbconfig.php';
+
+        $sql = "SELECT time, date FROM rijles WHERE date = \"$lesdate\" AND time = \"$lestime\" ";
+        $result = $conn->query($sql);
+
+
+        if ($result->num_rows == 0) {
+
+
+            $sql = "INSERT INTO rijles (date, time)
+VALUES ('$lesdate', '$lestime')";
+
+            if ($conn->query($sql) == TRUE) {
+                echo '<script type="text/javascript">alert("New record created successfully");</script>';
+            } else {
+                echo '<script type="text/javascript">alert("Error");</script>';
+                // echo   "Error: " . $sql . "<br>" . $conn->error;
+            }
+
+            $conn->close();
+
+        } else {
+            echo '<script type="text/javascript">alert("Bezet");</script>';
+            // echo   "Error: " . $sql . "<br>" . $conn->error;
+        }
+
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +98,7 @@
     <div class="col-md-2"></div>
     <div id="jumbo" class="col-md-9 jumbotron">
 
-        <form action="inplannen.php">
+        <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 
 
         <select name="date" class="dropdown">
@@ -72,7 +108,9 @@
                 $enddate = strtotime("+8 weeks",$startdate);
 
                 while ($startdate < $enddate) {
-                    echo '<option value="$startdate">';
+                    echo '<option value="';
+                    echo date("l M d", $startdate);
+                    echo '">';
                     echo date("l M d", $startdate);
                     echo '</option>';
                     echo '<br>';
@@ -89,7 +127,9 @@
                 $endtime = strtotime("+11 hours",$starttime);
 
                 while ($starttime < $endtime) {
-                    echo '<option value="$starttime">';
+                    echo '<option value="';
+                    echo date("G:i", $starttime);
+                    echo '">';
                     echo date("G:i", $starttime);
                     echo '</option>';
                     echo '<br>';
@@ -108,7 +148,11 @@
 
 
 
+
+
         </select>
+            <br>
+            <button type="submit" name="submit"  class="btn btn-default" value="inplannen">Inplannen</button>
 
         </form>
 
