@@ -1,0 +1,153 @@
+@font-face {
+    font-family: 'squares';
+    src: url('/fonts/squares_bold_free-webfont.eot');
+    src: url('/fonts/squares_bold_free-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/squares_bold_free-webfont.woff2') format('woff2'),
+    url('/fonts/squares_bold_free-webfont.woff') format('woff'),
+    url('/fonts/squares_bold_free-webfont.ttf') format('truetype'),
+    url('/fonts/squares_bold_free-webfont.svg#squares_boldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+.h4 , h4 {
+    font-size: 18px;
+    color: #D4DDE1;
+}
+
+h4:hover {
+    color: white;
+}
+
+
+#fb-link {
+    position: relative;
+
+
+}
+
+.navbar {
+    background-color: #2D3033;
+    border-radius: 0px;
+    opacity: 0.9;
+
+}
+
+#review {
+    margin-right: -10%;
+}
+
+._3x-2 {
+    display: none;
+}
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 40px;
+
+
+
+}
+.nav>li {
+    border: 10px;
+    border-color: white;
+}
+#fb-post>#u_0_1>div>div.userContentWrapper._5pcr>div._1dwg>div._3x-2{
+    display: none;
+}
+
+body{
+    background-image: url("../img/background.jpg");
+    background-size: cover ;
+
+}
+
+#selected a {
+
+    color: #FFED12;
+}
+
+#selected{
+    text-decoration: none;
+    color: #FFED12;
+    background: rgba(255,255,255,0.2);
+}
+
+.bar-right{
+    height: 3.5%;
+    width: 0.1%;
+    background-color: #FFED12;
+    position: fixed;
+    display: inline;
+    z-index: 3;
+    margin-top: 0.75%;
+    margin-left: 153px;
+}
+.bar-left{
+    height: 3.5%;
+    width: 0.1%;
+    background-color: #FFED12;
+    position: fixed;
+    display: inline;
+    z-index: 3;
+    margin-top: 0.75%;
+    margin-left: -157px;
+}
+
+#sidebar-facebook {
+    position: absolute;
+    margin-top: 0px;
+    display: block;
+}
+
+#sidebar-login {
+
+    position: absolute;
+    top: 0;
+    width: 325px;
+    margin-top: 450px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+#sidebar-aanmelden {
+    position: absolute;
+    top: 0;
+    width: 325px;
+    margin-top: 505px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+
+}
+
+#jumbo {
+    background: #000;
+    opacity: 0.75;
+    border-radius: 5px;
+    color: #DAE0E6;
+
+
+
+}
+
+#space {
+    height: 20px;
+}
+
+#space2{
+    height: 20px;
+
+}
+.title {
+    color: #FFED12;
+
+}
+
+.row {
+    width: 100%;
+}
