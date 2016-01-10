@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nameErr = "Naam is verplicht";
   } else {
     $last = test_input($_POST["last"]);
-
+  }
 
     if (!preg_match("/^[a-zA-Z ]*$/", $last)) {
       $nameErr = "Only letters and white space allowed";
@@ -108,7 +108,7 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
 
   $conn->close();
 }
-}
+
 
 
 ?>
@@ -235,7 +235,6 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
       </div>
       <div class="col-md-7"></div>
     </div>
-
 
 
 

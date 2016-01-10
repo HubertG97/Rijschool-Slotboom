@@ -1,41 +1,50 @@
 
 <?php
 
+session_start();
+
+if ($_SESSION["uid"] == "") {
+    header("location: login.php");
+}
+
+    $uid = $_SESSION["uid"];
+    if (isset($_POST['submit'])) {
+        if (isset($_SESSION)) {
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                $lesdate = $_POST["date"];
+                $lestime = $_POST["time"];
+
+            }
+            include_once 'php/dbconfig.php';
+
+            $sql = "SELECT time, date FROM rijles WHERE date = \"$lesdate\" AND time = \"$lestime\" ";
+            $result = $conn->query($sql);
 
 
-if(isset($_POST['submit'])) {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $lesdate = $_POST["date"];
-        $lestime = $_POST["time"];
-
-    }
-        include_once 'php/dbconfig.php';
-
-        $sql = "SELECT time, date FROM rijles WHERE date = \"$lesdate\" AND time = \"$lestime\" ";
-        $result = $conn->query($sql);
+            if ($result->num_rows == 0) {
 
 
-        if ($result->num_rows == 0) {
+                $sql = "INSERT INTO rijles (uid, date, time)
+VALUES ('$uid', '$lesdate', '$lestime')";
 
+                if ($conn->query($sql) == TRUE) {
+                    echo '<script type="text/javascript">alert("New record created successfully");</script>';
+                } else {
+                    echo '<script type="text/javascript">alert("Error");</script>';
+                    // echo   "Error: " . $sql . "<br>" . $conn->error;
+                }
 
-            $sql = "INSERT INTO rijles (date, time)
-VALUES ('$lesdate', '$lestime')";
+                $conn->close();
 
-            if ($conn->query($sql) == TRUE) {
-                echo '<script type="text/javascript">alert("New record created successfully");</script>';
             } else {
-                echo '<script type="text/javascript">alert("Error");</script>';
+                echo '<script type="text/javascript">alert("Bezet");</script>';
                 // echo   "Error: " . $sql . "<br>" . $conn->error;
             }
 
-            $conn->close();
-
-        } else {
-            echo '<script type="text/javascript">alert("Bezet");</script>';
-            // echo   "Error: " . $sql . "<br>" . $conn->error;
+        }else{
+            echo '<script type="text/javascript">alert("niet ingelogd");</script>';
         }
-
-}
+    }
 
 ?>
 <!DOCTYPE html>
@@ -97,6 +106,25 @@ VALUES ('$lesdate', '$lestime')";
   <div class="row">
     <div class="col-md-2"></div>
     <div id="jumbo" class="col-md-9 jumbotron">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4 title">
+                <h2>Rijles inplannen</h2>
+            </div>
+            <div class="col-md-1 ">
+            </div>
+            <div class="col-md-4 ">
+                <br>
+                <h3>Geplande rijlessen</h3>
+            </div>
+            <div class="row">
+                <div id="space2" class="col-md-12"></div>
+            </div>
+            <div class="col-md-7"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-4">
 
         <form method="post" action="<?php echo $_SERVER["PHP_SELF"];?>">
 
@@ -153,13 +181,40 @@ VALUES ('$lesdate', '$lestime')";
         </select>
             <br>
             <button type="submit" name="submit"  class="btn btn-default" value="inplannen">Inplannen</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+
+
+
 
         </form>
 
 
 
 
+        </div>
+            <div class="col-md-5 title"></div>
 
+            <?php
+            include_once 'php/dbconfig.php';
+
+
+            $sql2 = "SELECT time, date FROM rijles WHERE uid = \"$uid\" ";
+            $result2 = $conn->query($sql2);
+            $date = mysqli_fetch_assoc($result2);
+            // var_dump($date);
+           echo implode(" ",$date);
+
+
+
+            ?>
+
+
+        </div>
 
     </div>
 

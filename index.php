@@ -39,14 +39,14 @@
         <a href="inplannen.php">Rijles plannen</a>
       </li>
       <li>
-        <a href="#">Contact</a>
+        <a href="contact.php">Contact</a>
       </li>
 
        <li>
-         <a id="sidebar-login" href="#">Log in</a>
+         <a id="sidebar-login" href="login.php">Log in</a>
       </li>
      <li>
-        <a id="sidebar-aanmelden"  href="#">Aanmelden</a>
+        <a id="sidebar-aanmelden"  href="aanmelden.php">Aanmelden</a>
       </li>
        </ul>
   </div>
