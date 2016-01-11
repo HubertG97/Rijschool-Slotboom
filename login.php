@@ -1,6 +1,10 @@
 <?php
 session_set_cookie_params(0);
 session_start();
+if (isset($_SESSION["uid"])) {
+  header("location: index.php");
+  echo '<script type="text/javascript">alert("Je bent al ingelogd");</script>';
+}
 $passError = "";
 include("php/dbconfig.php");
 
@@ -9,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $user = mysqli_real_escape_string($conn, $_POST['user']);
   $password = mysqli_real_escape_string($conn, $_POST['password']);
   $password = md5($password);
-  $sql = "SELECT uid FROM account WHERE user='$user' and password='$password'";
+  $sql = "SELECT uid FROM sb_account WHERE user='$user' and password='$password'";
   $result = $conn->query($sql);
   $uid = mysqli_fetch_assoc($result);
  // var_dump($uid);
@@ -18,12 +22,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
   if ($result->num_rows == 1) {
 
+    include("php/dbconfig.php");
+
     $uid = implode(" ",$uid);
+
+
     $_SESSION["user"] = $user;
     $_SESSION["uid"] = $uid;
-   // echo $_SESSION['uid'];
 
-    header("location: inplannen.php");
+    $uid = mysqli_real_escape_string($conn, $uid);
+    $sql2 = "SELECT first FROM sb_account WHERE uid='$uid'";
+    $result2 = $conn->query($sql2);
+    $first = mysqli_fetch_assoc($result2);
+
+   // var_dump($first);
+    $first = implode(" ",$first);
+
+    $_SESSION["first"] = $first;
+  //  echo $_SESSION["first"];
+
+      header("location: inplannen.php");
 
   } else
     $passError = "Your Login Name or Password is invalid";
@@ -74,14 +92,30 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="inplannen.php">Rijles plannen</a>
       </li>
       <li>
-        <a href="#">Contact</a>
+        <a href="contact.php">Contact</a>
       </li>
 
       <li>
-        <a id="sidebar-login" href="#">Log in</a>
+        <a id="sidebar-login" href="login.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Hallo, "  .$_SESSION["first"];
+
+          }else{
+            echo "Log in";
+          }
+
+          ?></a>
       </li>
       <li>
-        <a id="sidebar-aanmelden"  href="#">Aanmelden</a>
+        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Uitloggen";
+
+          }else{
+            echo "Aanmelden";
+          }
+
+          ?></a>
       </li>
     </ul>
   </div>

@@ -1,6 +1,5 @@
 
 <?php
-
 session_start();
 
 if ($_SESSION["uid"] == "") {
@@ -17,14 +16,14 @@ if ($_SESSION["uid"] == "") {
             }
             include_once 'php/dbconfig.php';
 
-            $sql = "SELECT time, date FROM rijles WHERE date = \"$lesdate\" AND time = \"$lestime\" ";
+            $sql = "SELECT time, date FROM sb_rijles WHERE date = \"$lesdate\" AND time = \"$lestime\" ";
             $result = $conn->query($sql);
 
 
             if ($result->num_rows == 0) {
 
 
-                $sql = "INSERT INTO rijles (uid, date, time)
+                $sql = "INSERT INTO sb_rijles (uid, date, time)
 VALUES ('$uid', '$lesdate', '$lestime')";
 
                 if ($conn->query($sql) == TRUE) {
@@ -86,17 +85,33 @@ VALUES ('$uid', '$lesdate', '$lestime')";
         <a href="proefles.php">Proefles</a>
       </li>
       <li>
-        <a href="#">Rijles plannen</a>
+        <a href="inplannen.php">Rijles plannen</a>
       </li>
       <li>
-        <a href="#">Contact</a>
+        <a href="contact.php">Contact</a>
       </li>
 
       <li>
-        <a id="sidebar-login" href="#">Log in</a>
+        <a id="sidebar-login" href="login.php"><?php
+            if (isset($_SESSION["uid"])) {
+                echo "Hallo, "  .$_SESSION["first"];
+
+            }else{
+                echo "Log in";
+            }
+
+            ?></a>
       </li>
       <li>
-        <a id="sidebar-aanmelden"  href="#">Aanmelden</a>
+        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+            if (isset($_SESSION["uid"])) {
+                echo "Uitloggen";
+
+            }else{
+                echo "Aanmelden";
+            }
+
+       ?></a>
       </li>
     </ul>
   </div>
@@ -203,7 +218,7 @@ VALUES ('$uid', '$lesdate', '$lestime')";
             include_once 'php/dbconfig.php';
 
 
-            $sql2 = "SELECT time, date FROM rijles WHERE uid = \"$uid\" ";
+            $sql2 = "SELECT time, date FROM sb_rijles WHERE uid = \"$uid\" ";
             $result2 = $conn->query($sql2);
             $date = mysqli_fetch_assoc($result2);
             // var_dump($date);

@@ -1,4 +1,6 @@
 <?php
+session_set_cookie_params(0);
+session_start();
 // define variables and set to empty values
 $nameErr = $emailErr = $addressErr = $cityErr = $phoneErr = "";
 $first = $email = $last = $comment = $phone = $city = $address = $zipcode = "";
@@ -96,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-  $sql = "INSERT INTO proefles (first, last, address, zipcode, city, email, phone, comment)
+  $sql = "INSERT INTO sb_proefles (first, last, address, zipcode, city, email, phone, comment)
 VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', '$comment')";
 
  if ($conn->query($sql) == TRUE) {
@@ -148,17 +150,33 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
         <a href="proefles.php">Proefles</a>
       </li>
       <li>
-        <a href="#">Rijles plannen</a>
+        <a href="inplannen.php">Rijles plannen</a>
       </li>
       <li>
-        <a href="#">Contact</a>
+        <a href="contact.php">Contact</a>
       </li>
 
       <li>
-        <a id="sidebar-login" href="#">Log in</a>
+        <a id="sidebar-login" href="login.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Hallo, "  .$_SESSION["first"];
+
+          }else{
+            echo "Log in";
+          }
+
+          ?></a>
       </li>
       <li>
-        <a id="sidebar-aanmelden"  href="#">Aanmelden</a>
+        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Uitloggen";
+
+          }else{
+            echo "Aanmelden";
+          }
+
+          ?></a>
       </li>
     </ul>
   </div>

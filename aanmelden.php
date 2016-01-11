@@ -1,4 +1,15 @@
 <?php
+session_set_cookie_params(0);
+session_start();
+if (isset($_SESSION["uid"])) {
+  // remove all session variables
+  session_unset();
+
+// destroy the session
+  session_destroy();
+  header("location: index.php");
+
+}
 // define variables and set to empty values
 $nameErr = $emailErr = $addressErr = $cityErr = $phoneErr = $passwordErr = "";
 $first = $email = $last = $comment = $phone = $city = $address = $zipcode = $password = $user = "";
@@ -120,7 +131,7 @@ if ($firstChecker && $lastChecker && $userChecker && $passChecker && $addressChe
     $password = md5($password);
 
 
-    $sql = "INSERT INTO account (user, password, first, last, adress, zipcode, city, phone, level)
+    $sql = "INSERT INTO sb_account (user, password, first, last, address, zipcode, city, phone, level)
 VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city', '$phone', '0')";
 
     if ($conn->query($sql) == TRUE) {
@@ -173,17 +184,33 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
         <a href="proefles.php">Proefles</a>
       </li>
       <li>
-        <a href="#">Rijles plannen</a>
+        <a href="inplannen.php">Rijles plannen</a>
       </li>
       <li>
-        <a href="#">Contact</a>
+        <a href="contact.php">Contact</a>
       </li>
 
       <li>
-        <a id="sidebar-login" href="#">Log in</a>
+        <a id="sidebar-login" href="login.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Hallo, "  .$_SESSION["first"];
+
+          }else{
+            echo "Log in";
+          }
+
+          ?></a>
       </li>
       <li>
-        <a id="sidebar-aanmelden"  href="#">Aanmelden</a>
+        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Uitloggen";
+
+          }else{
+            echo "Aanmelden";
+          }
+
+          ?></a>
       </li>
     </ul>
   </div>

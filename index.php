@@ -1,4 +1,6 @@
 <?php
+session_set_cookie_params(0);
+session_start();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +45,26 @@
       </li>
 
        <li>
-         <a id="sidebar-login" href="login.php">Log in</a>
-      </li>
-     <li>
-        <a id="sidebar-aanmelden"  href="aanmelden.php">Aanmelden</a>
+         <a id="sidebar-login" href="login.php"><?php
+           if (isset($_SESSION["uid"])) {
+             echo "Hallo, "  .$_SESSION["first"];
+
+           }else{
+             echo "Log in";
+           }
+
+           ?></a>
+       </li>
+      <li>
+        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Uitloggen";
+
+          }else{
+            echo "Aanmelden";
+          }
+
+          ?></a>
       </li>
        </ul>
   </div>

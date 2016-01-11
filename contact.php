@@ -1,12 +1,20 @@
 <?php
+session_set_cookie_params(0);
+session_start();
 // define variables and set to empty values
+
 $nameErr = $emailErr = $phoneErr = $messageErr = "";
 $name = $email = $message = $phone = "";
 
 $from = "Contactformulier Website";
-$to = "hubertgetrouw@gmail.com";
+
 $subject = "Contactformulier Slotboom";
 $body = "From: $name\n E-Mail: $email\n Message:\n $message";
+$header = "From: noreply@slotboom.com\r\n";
+$header.= "MIME-Version: 1.0\r\n";
+$header.= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+$header.= "X-Priority: 1\r\n";
+
 
 function test_input($data) {
   $data = trim($data);
@@ -57,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
   if(isset($_POST['submit'])) {
     if(!$nameErr && !$emailErr && !$phoneErr && !$messageErr){
-      if (mail ($to, $subject, $body, $from)) {
+      if (mail ('hubertgetrouw@gmail.com', $subject, $body, $header)) {
         echo '<script type="text/javascript">alert("Email verzonden");</script>';
       } else {
         echo '<script type="text/javascript">alert("Error");</script>';
@@ -115,17 +123,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="proefles.php">Proefles</a>
       </li>
       <li>
-        <a href="#">Rijles plannen</a>
+        <a href="inplannen.php">Rijles plannen</a>
       </li>
       <li>
-        <a href="#">Contact</a>
+        <a href="contact.php">Contact</a>
       </li>
 
       <li>
-        <a id="sidebar-login" href="#">Log in</a>
+        <a id="sidebar-login" href="login.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Hallo, "  .$_SESSION["first"];
+
+          }else{
+            echo "Log in";
+          }
+
+          ?></a>
       </li>
       <li>
-        <a id="sidebar-aanmelden"  href="#">Aanmelden</a>
+        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Uitloggen";
+
+          }else{
+            echo "Aanmelden";
+          }
+
+          ?></a>
       </li>
     </ul>
   </div>
@@ -165,7 +189,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <span class="error">* <?php echo $phoneErr;?></span>
             </div>
             <div class="form-group">
-              <label for="message">Comment:</label>
+              <label for="message">Bericht:</label>
               <textarea class="form-control" rows="4" name="message" value="<?php echo $message;?>"></textarea>
             </div>
 
@@ -176,7 +200,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           </div>
         </div>
         </form>
-        </form>
+
 
 
       </div>
