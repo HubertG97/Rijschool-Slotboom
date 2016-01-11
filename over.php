@@ -44,17 +44,17 @@ session_start();
         <a href="contact.php">Contact</a>
       </li>
 
-       <li>
-         <a id="sidebar-login" href="login.php"><?php
-           if (isset($_SESSION["uid"])) {
-             echo "Hallo, "  .$_SESSION["first"];
+      <li>
+        <a id="sidebar-login" href="login.php"><?php
+          if (isset($_SESSION["uid"])) {
+            echo "Hallo, "  .$_SESSION["first"];
 
-           }else{
-             echo "Log in";
-           }
+          }else{
+            echo "Log in";
+          }
 
-           ?></a>
-       </li>
+          ?></a>
+      </li>
       <li>
         <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
           if (isset($_SESSION["uid"])) {
@@ -66,21 +66,48 @@ session_start();
 
           ?></a>
       </li>
-       </ul>
+    </ul>
   </div>
   <div class="row">
     <div id="space" class="col-md-12"></div>
   </div>
   <div class="row">
     <div class="col-md-2"></div>
-    <div id="jumbo" class="col-md-9 jumbotron"><h2>Al bijna 40 jaar ervaring!</h2>
-    <h3>in regio Rotterdam, Rhoon, Barendrecht en Ridderkerk. </h3>
+    <div id="jumbo" class="col-md-9 jumbotron">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-4 title">
+          <h2>Over</h2>
+        </div>
+        <div class="col-md-7"></div>
+      </div>
+      <div class="row">
+        <div id="space2" class="col-md-12"></div>
+      </div>
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-7">
+        <h3>Prijzen</h3>
+
+          <p>Startpakket:       499,00 Euro (12 lessen incl theorie)</p>
+          <p>Lesprijs:          39,00 Euro</p>
+          <p>Examen:            250,00 Euro</p>
+          <p>Herexamen          240,00 Euro</p>
+          <p>Tussentijdse toets 210,00 Euro</p>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+
+
+  </div>
+  <div class="col-md-1"></div>
 
 
 
     </div>
     <div class="col-md-1"></div>
-  <!-- /#sidebar-wrapper -->
+    <!-- /#sidebar-wrapper -->
 
 </body>
 </html>

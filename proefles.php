@@ -144,7 +144,7 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
 
       </li>
       <li>
-        <a href="#">Over</a>
+        <a href="over.php">Over</a>
       </li>
       <li>
         <a href="proefles.php">Proefles</a>
@@ -247,7 +247,7 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
           </div>
         </div>
         </form>
-        </form>
+
 
 
       </div>

@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       </li>
       <li>
-        <a href="#">Over</a>
+        <a href="over.php">Over</a>
       </li>
       <li>
         <a href="proefles.php">Proefles</a>

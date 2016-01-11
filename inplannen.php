@@ -27,13 +27,16 @@ if ($_SESSION["uid"] == "") {
 VALUES ('$uid', '$lesdate', '$lestime')";
 
                 if ($conn->query($sql) == TRUE) {
+                    $conn->query($sql);
                     echo '<script type="text/javascript">alert("New record created successfully");</script>';
+
                 } else {
                     echo '<script type="text/javascript">alert("Error");</script>';
                     // echo   "Error: " . $sql . "<br>" . $conn->error;
                 }
 
                 $conn->close();
+                header("location: inplannen.php");
 
             } else {
                 echo '<script type="text/javascript">alert("Bezet");</script>';
@@ -79,7 +82,7 @@ VALUES ('$uid', '$lesdate', '$lestime')";
 
       </li>
       <li>
-        <a href="#">Over</a>
+        <a href="over.php">Over</a>
       </li>
       <li>
         <a href="proefles.php">Proefles</a>
@@ -220,10 +223,15 @@ VALUES ('$uid', '$lesdate', '$lestime')";
 
             $sql2 = "SELECT time, date FROM sb_rijles WHERE uid = \"$uid\" ";
             $result2 = $conn->query($sql2);
-            $date = mysqli_fetch_assoc($result2);
-            // var_dump($date);
-           echo implode(" ",$date);
+            if(mysqli_fetch_assoc($result2)) {
 
+                $date = mysqli_fetch_assoc($result2);
+
+                // var_dump($date);
+                echo implode(" ", $date);
+            }else{
+                echo "Geen rijlessen gepland";
+            }
 
 
             ?>

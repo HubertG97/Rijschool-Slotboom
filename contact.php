@@ -117,7 +117,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
       </li>
       <li>
-        <a href="#">Over</a>
+        <a href="over.php">Over</a>
       </li>
       <li>
         <a href="proefles.php">Proefles</a>
@@ -162,9 +162,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-4 title">
-          <h2>Proefles aanvragen</h2>
+          <h2>Contact</h2>
         </div>
-        <div class="col-md-7"></div>
+        <div class="col-md-7">
+          <br>
+          <br>
+          <p>Tel: 06 22204640</p>
+          <p>Email: Fransslotboom@gmail.com</p>
+          <p> Adres: Bezeel 47</p>
+
+        </div>
       </div>
       <div class="row">
         <div id="space2" class="col-md-12"></div>
@@ -204,7 +211,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
       </div>
-      <div class="col-md-7"></div>
+      <div class="col-md-5"></div>
+
     </div>
 
 
