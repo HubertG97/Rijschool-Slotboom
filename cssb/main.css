@@ -1,0 +1,237 @@
+
+
+/* Custom font */
+@font-face {
+    font-family: 'squares';
+    src: url('/fonts/squares_bold_free-webfont.eot');
+    src: url('/fonts/squares_bold_free-webfont.eot?#iefix') format('embedded-opentype'),
+    url('/fonts/squares_bold_free-webfont.woff2') format('woff2'),
+    url('/fonts/squares_bold_free-webfont.woff') format('woff'),
+    url('/fonts/squares_bold_free-webfont.ttf') format('truetype'),
+    url('/fonts/squares_bold_free-webfont.svg#squares_boldregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* html size */
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+/* size and color of h4 */
+.h4 , h4 {
+    font-size: 18px;
+    color: #D4DDE1;
+}
+
+h4:hover {
+    color: white;
+}
+
+/* navigation bar */
+
+.navbar {
+    background-color: #2D3033;
+    border-radius: 0px;
+    opacity: 0.9;
+
+}
+
+
+
+.nav>li>a {
+    position: relative;
+    display: block;
+    padding: 10px 40px;
+
+
+
+}
+.nav>li {
+    border: 10px;
+    border-color: white;
+}
+
+/* body styling */
+body{
+    background-image: url("../img/background.jpg");
+    background-size: cover ;position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+
+
+}
+
+/* highlight navbar page */
+#selected a {
+
+    color: #FFED12;
+}
+
+#selected{
+    text-decoration: none;
+    color: #FFED12;
+    background: rgba(255,255,255,0.2);
+}
+
+
+
+/* position login panel and navbar */
+
+#sidebar-login {
+
+    position: absolute;
+    top: 0;
+    width: 325px;
+    margin-top: 450px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+}
+
+/* position signup panel and navbar */
+
+#sidebar-aanmelden {
+    position: absolute;
+    top: 0;
+    width: 325px;
+    margin-top: 505px;
+    padding: 0;
+    list-style: none;
+    text-align: center;
+
+}
+/* Jumbotron styling for index page */
+
+#jumbo {
+    background: #000;
+    opacity: 0.75;
+    border-radius: 5px;
+    color: #DAE0E6;
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#jumbohome {
+    background: #000;
+    opacity: 0.75;
+    border-radius: 5px;
+    color: #DAE0E6;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+#jumbo2 {
+    background: #000;
+    opacity: 0.75;
+    border-radius: 5px;
+    color: #DAE0E6;
+
+}
+
+#jumbohome h2{
+    padding-bottom: 5%;
+}
+.jumbotron p {
+    font-size: 16px;
+}
+
+/* Space between elements */
+
+#space {
+    height: 20px;
+}
+
+#space2{
+    height: 20px;
+
+}
+
+.title {
+    color: #FFED12;
+
+}
+
+.row {
+    width: 100%;
+}
+
+.dropdown {
+    width: 250px;
+    color: black;
+    border-radius: 5px;
+    height: 50px;
+}
+
+#space3 {
+    height: 250px;
+
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    color: #DAE0E6;
+    text-decoration: none;
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+.footer a {
+    text-decoration: none;
+    color: #DAE0E6;
+}
+
+#table1 {
+    width: 100%;
+    border: 1px solid #FFED12;
+    border-collapse: collapse;
+
+    text-align: center;
+}
+
+td {
+    border: 1px solid #FFED12;
+    border-collapse: collapse;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    text-align: center;
+}
+
+
+.panel {
+    color: #141823;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #DAE0E6;
+
+
+
+
+}
+.panel p {
+    font-size: 16px;
+}
+
+
+blockquote {
+    font-size: 12px;
+}
+
+.spacer {
+    width: 12.5%;
+}
+
+#map {
+
+
+    padding-left: 15%;
+}
+#line{
+    padding-top: 10%;
+}
