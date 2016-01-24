@@ -2,6 +2,7 @@
 //Session start & cookie param set
 session_set_cookie_params(0);
 session_start();
+//check if logged in
 if (isset($_SESSION["uid"])) {
   // remove all session variables
   session_unset();
