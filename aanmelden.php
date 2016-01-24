@@ -14,13 +14,14 @@ if (isset($_SESSION["uid"])) {
 $nameErr = $emailErr = $addressErr = $cityErr = $phoneErr = $passwordErr = "";
 $first = $email = $last = $comment = $phone = $city = $address = $zipcode = $password = $user = "";
 
-
+//Remove special characters
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
+//Validate form data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["first"])) {
     $firstChecker = false;
@@ -110,16 +111,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = test_input($_POST["phone"]);
 
   }
-
+//check if all formdata is correct
 if ($firstChecker && $lastChecker && $userChecker && $passChecker && $addressChecker && $cityChecker && $zipChecker && $phoneChecker == true) {
 
-
+  //send to database when submit button is pressed
   if (isset($_POST['submit'])) {
-
 
     include_once 'php/dbconfig.php';
 
-
+    //add backslashes to special characters
     $first = mysqli_real_escape_string($conn, $first);
     $last = mysqli_real_escape_string($conn, $last);
     $address = mysqli_real_escape_string($conn, $address);
@@ -127,22 +127,21 @@ if ($firstChecker && $lastChecker && $userChecker && $passChecker && $addressChe
     $city = mysqli_real_escape_string($conn, $city);
     $phone = mysqli_real_escape_string($conn, $phone);
 
-
+    //encrypt the password
     $password = md5($password);
 
-
+    //query to add account to database
     $sql = "INSERT INTO sb_account (user, password, first, last, address, zipcode, city, phone, level)
 VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city', '$phone', '0')";
 
+    //message if succeeded or failed
     if ($conn->query($sql) == TRUE) {
       echo '<script type="text/javascript">alert("New record created successfully");</script>';
     } else {
       echo '<script type="text/javascript">alert("Error");</script>';
-      // echo   "Error: " . $sql . "<br>" . $conn->error;
     }
-
+    //close database connection
     $conn->close();
-
   }
 }
 }
@@ -173,9 +172,7 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
         </a>
       </li>
       <li>
-
         <a  href="index.php">Home</a>
-
       </li>
       <li>
         <a href="over.php">Over</a>
@@ -189,9 +186,10 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
       <li>
         <a href="contact.php">Contact</a>
       </li>
-
       <li>
-        <a id="sidebar-login" href="login.php"><?php
+        <a id="sidebar-login" href="login.php">
+          <?php
+          //Show the name of the user when logged in
           if (isset($_SESSION["uid"])) {
             echo "Hallo "  .$_SESSION["first"];
 
@@ -202,7 +200,9 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
           ?></a>
       </li>
       <li id="selected">
-        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+        <a id="sidebar-aanmelden"  href="aanmelden.php">
+          <?php
+          //show the sign up button or log out button
           if (isset($_SESSION["uid"])) {
             echo "Uitloggen";
 
@@ -233,9 +233,8 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-5">
+          <!-- Form -->
           <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
-
-
               <div class="form-group">
                 <label for="user">Email adres</label>
                 <input type="email" class="form-control" name="user" value="<?php echo $user;?>">
