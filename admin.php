@@ -2,6 +2,13 @@
 //Session start & cookie param set
 session_set_cookie_params(0);
 session_start();
+
+//Check if user has admin rights
+if($_SESSION["level"] == "2"){
+  $access = true;
+}else {
+  header("location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +23,7 @@ session_start();
 </head>
 <body>
 
+
 <div id="wrapper">
 
   <!-- Sidebar -->
@@ -29,7 +37,7 @@ session_start();
       <li>
         <a  href="index.php">Home</a>
       </li>
-      <li id="selected">
+      <li>
         <a href="over.php">Over</a>
       </li>
       <li>
@@ -41,7 +49,6 @@ session_start();
       <li>
         <a href="contact.php">Contact</a>
       </li>
-
       <li>
         <a id="sidebar-login" href="login.php">
           <?php
@@ -52,8 +59,7 @@ session_start();
           }else{
             echo "Log in";
           }
-          ?>
-        </a>
+          ?></a>
       </li>
       <li>
         <a id="sidebar-aanmelden"  href="aanmelden.php">
@@ -79,7 +85,7 @@ session_start();
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-4 title">
-          <h2>Over</h2>
+          <h2>Admin</h2>
         </div>
         <div class="col-md-7"></div>
       </div>
@@ -88,24 +94,68 @@ session_start();
       </div>
       <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-7">
-          <!-- Pricing -->
+        <div class="col-md-9">
+          <h3>Rijlessen</h3>
+          <br>
+          <br>
+          <!-- Tabel with view of all the appointments that are made /-->
+          <table id="table1">
+            <thead>
+            <tr>
+              <td>Naam</td>
+              <td>Achternaam</td>
+              <td>Adres</td>
+              <td>Postcode</td>
+              <td>Plaats</td>
+              <td>Telefoon</td>
+              <td>Datum</td>
+              <td>Tijd</td>
+            </tr>
+            </thead>
+            <tbody>
+          <?php
+          //Generate columns with data of the appointment and the user
+          if($access) {
+            include_once 'php/dbconfig.php';
 
-          <h3>Prijzen</h3>
+            //Join query to find the matching user with the appointment id and show them
+            $sql2 = "SELECT a.first, a.last, a.address, a.zipcode, a.city, a.phone, r.date, r.time FROM sb_account a INNER JOIN sb_rijles r
+          ON a.uid = r.uid;";
+            $result2 = $conn->query($sql2);
 
-          <p>Startpakket:       499,00 Euro (12 lessen incl theorie)</p>
-          <p>Lesprijs:          39,00 Euro</p>
-          <p>Examen:            250,00 Euro</p>
-          <p>Herexamen          240,00 Euro</p>
-          <p>Tussentijdse toets 210,00 Euro</p>
+            //Create rows with user information and appointment information
+            if (mysqli_fetch_assoc($result2)) {
+              while (($row = mysqli_fetch_assoc($result2))) {
+
+                echo "<tr>";
+                echo "<td>". $row['first']."</td>";
+                echo "<td>". $row['last']."</td>";
+                echo "<td>". $row['address']."</td>";
+                echo "<td>". $row['zipcode']."</td>";
+                echo "<td>". $row['city']."</td>";
+                echo "<td>". $row['phone']."</td>";
+                echo "<td>". $row['date']."</td>";
+                echo "<td>". $row['time']."</td>";
+                echo "</tr>";
+              }
+            } else {
+              echo "Geen rijlessen gepland";
+            }
+
+          }else{
+            header("location: index.php");
+          }
+          ?>
+          </tbody>
+          </table>
+        </div>
+        <div class="col-md-2"></div>
       </div>
-      <div class="col-md-4"></div>
-    </div>
-  </div>
-  <div class="col-md-1"></div>
     </div>
     <div class="col-md-1"></div>
-    <!-- /#sidebar-wrapper -->
+  </div>
+  <div class="col-md-1"></div>
+  <!-- /#sidebar-wrapper -->
   <div class="footer"><p>&copy; Copyright 2016 Rijschool Frans Slotboom | KVK 24251557 | <a href="admin.php">Admin</a></p></div>
 </body>
 </html>

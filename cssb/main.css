@@ -1,3 +1,6 @@
+
+
+/* Custom font */
 @font-face {
     font-family: 'squares';
     src: url('/fonts/squares_bold_free-webfont.eot');
@@ -11,7 +14,12 @@
 
 }
 
-
+/* html size */
+html {
+    height: 100%;
+    box-sizing: border-box;
+}
+/* size and color of h4 */
 .h4 , h4 {
     font-size: 18px;
     color: #D4DDE1;
@@ -21,12 +29,7 @@ h4:hover {
     color: white;
 }
 
-
-#fb-link {
-    position: relative;
-
-
-}
+/* navigation bar */
 
 .navbar {
     background-color: #2D3033;
@@ -35,13 +38,7 @@ h4:hover {
 
 }
 
-#review {
-    margin-right: -10%;
-}
 
-._3x-2 {
-    display: none;
-}
 
 .nav>li>a {
     position: relative;
@@ -55,16 +52,19 @@ h4:hover {
     border: 10px;
     border-color: white;
 }
-#fb-post>#u_0_1>div>div.userContentWrapper._5pcr>div._1dwg>div._3x-2{
-    display: none;
-}
 
+/* body styling */
 body{
     background-image: url("../img/background.jpg");
-    background-size: cover ;
+    background-size: cover ;position: relative;
+    margin: 0;
+    padding-bottom: 6rem;
+    min-height: 100%;
+
 
 }
 
+/* highlight navbar page */
 #selected a {
 
     color: #FFED12;
@@ -76,32 +76,9 @@ body{
     background: rgba(255,255,255,0.2);
 }
 
-.bar-right{
-    height: 3.5%;
-    width: 0.1%;
-    background-color: #FFED12;
-    position: fixed;
-    display: inline;
-    z-index: 3;
-    margin-top: 0.75%;
-    margin-left: 153px;
-}
-.bar-left{
-    height: 3.5%;
-    width: 0.1%;
-    background-color: #FFED12;
-    position: fixed;
-    display: inline;
-    z-index: 3;
-    margin-top: 0.75%;
-    margin-left: -157px;
-}
 
-#sidebar-facebook {
-    position: absolute;
-    margin-top: 0px;
-    display: block;
-}
+
+/* position login panel and navbar */
 
 #sidebar-login {
 
@@ -114,6 +91,8 @@ body{
     text-align: center;
 }
 
+/* position signup panel and navbar */
+
 #sidebar-aanmelden {
     position: absolute;
     top: 0;
@@ -124,16 +103,40 @@ body{
     text-align: center;
 
 }
+/* Jumbotron styling for index page */
 
 #jumbo {
     background: #000;
     opacity: 0.75;
     border-radius: 5px;
     color: #DAE0E6;
-
-
+    padding-left: 5%;
+    padding-right: 5%;
+}
+#jumbohome {
+    background: #000;
+    opacity: 0.75;
+    border-radius: 5px;
+    color: #DAE0E6;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+#jumbo2 {
+    background: #000;
+    opacity: 0.75;
+    border-radius: 5px;
+    color: #DAE0E6;
 
 }
+
+#jumbohome h2{
+    padding-bottom: 5%;
+}
+.jumbotron p {
+    font-size: 16px;
+}
+
+/* Space between elements */
 
 #space {
     height: 20px;
@@ -143,6 +146,7 @@ body{
     height: 20px;
 
 }
+
 .title {
     color: #FFED12;
 
@@ -162,4 +166,72 @@ body{
 #space3 {
     height: 250px;
 
+}
+
+.footer {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    color: #DAE0E6;
+    text-decoration: none;
+    text-align: center;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+}
+
+.footer a {
+    text-decoration: none;
+    color: #DAE0E6;
+}
+
+#table1 {
+    width: 100%;
+    border: 1px solid #FFED12;
+    border-collapse: collapse;
+
+    text-align: center;
+}
+
+td {
+    border: 1px solid #FFED12;
+    border-collapse: collapse;
+    padding-left: 7px;
+    padding-right: 7px;
+    padding-bottom: 4px;
+    padding-top: 4px;
+    text-align: center;
+}
+
+
+.panel {
+    color: #141823;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    background-color: #DAE0E6;
+
+
+
+
+}
+.panel p {
+    font-size: 16px;
+}
+
+
+blockquote {
+    font-size: 12px;
+}
+
+.spacer {
+    width: 12.5%;
+}
+
+#map {
+
+
+    padding-left: 15%;
+}
+#line{
+    padding-top: 10%;
 }

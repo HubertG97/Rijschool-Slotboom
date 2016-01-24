@@ -157,7 +157,7 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
   <link href="cssb/simple-sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
   <meta charset="UTF-8">
-  <title></title>
+  <title>Slotboom</title>
 </head>
 <body>
 
@@ -172,7 +172,7 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
           Slotboom
         </a>
       </li>
-      <li id="selected">
+      <li>
 
         <a  href="index.php">Home</a>
 
@@ -193,7 +193,7 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
       <li>
         <a id="sidebar-login" href="login.php"><?php
           if (isset($_SESSION["uid"])) {
-            echo "Hallo, "  .$_SESSION["first"];
+            echo "Hallo "  .$_SESSION["first"];
 
           }else{
             echo "Log in";
@@ -201,7 +201,7 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
 
           ?></a>
       </li>
-      <li>
+      <li id="selected">
         <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
           if (isset($_SESSION["uid"])) {
             echo "Uitloggen";
@@ -232,7 +232,7 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
       </div>
       <div class="row">
         <div class="col-md-1"></div>
-        <div class="col-md-4">
+        <div class="col-md-5">
           <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
 
@@ -301,6 +301,6 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
   </div>
   <div class="col-md-1"></div>
   <!-- /#sidebar-wrapper -->
-
+  <div class="footer"><p>&copy; Copyright 2016 Rijschool Frans Slotboom | KVK 24251557 | <a href="admin.php">Admin</a></p></div>
 </body>
 </html>

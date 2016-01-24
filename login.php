@@ -1,53 +1,72 @@
 <?php
+//Start session & set cookie parameter
 session_set_cookie_params(0);
 session_start();
-if (isset($_SESSION["uid"])) {
+
+  //Check if user is logged in
+  if (isset($_SESSION["uid"])) {
   header("location: index.php");
   echo '<script type="text/javascript">alert("Je bent al ingelogd");</script>';
 }
-$passError = "";
-include("php/dbconfig.php");
 
-if(isset($_POST['submit'])) {
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  $user = mysqli_real_escape_string($conn, $_POST['user']);
-  $password = mysqli_real_escape_string($conn, $_POST['password']);
-  $password = md5($password);
-  $sql = "SELECT uid FROM sb_account WHERE user='$user' and password='$password'";
-  $result = $conn->query($sql);
-  $uid = mysqli_fetch_assoc($result);
- // var_dump($uid);
+  //Create empty variable for the password error
+  $passError = "";
+
+  //Database file
+  include("php/dbconfig.php");
+
+  //Compare username and password from the input field with the database
+  if(isset($_POST['submit'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+      $user = mysqli_real_escape_string($conn, $_POST['user']);
+      $password = mysqli_real_escape_string($conn, $_POST['password']);
+      $password = md5($password);
+      $sql = "SELECT uid FROM sb_account WHERE user='$user' and password='$password'";
+      $result = $conn->query($sql);
+      $uid = mysqli_fetch_assoc($result);
 
 
-
+  //Prepare session when user & password are correct
   if ($result->num_rows == 1) {
 
-    include("php/dbconfig.php");
+      //Database settings
+      include("php/dbconfig.php");
 
-    $uid = implode(" ",$uid);
+      //Convert array got from the database to a string
+      $uid = implode(" ",$uid);
 
+      //Set session username & uid
+      $_SESSION["user"] = $user;
+      $_SESSION["uid"] = $uid;
 
-    $_SESSION["user"] = $user;
-    $_SESSION["uid"] = $uid;
+      $uid = mysqli_real_escape_string($conn, $uid);
 
-    $uid = mysqli_real_escape_string($conn, $uid);
-    $sql2 = "SELECT first FROM sb_account WHERE uid='$uid'";
-    $result2 = $conn->query($sql2);
-    $first = mysqli_fetch_assoc($result2);
+      //Search for first name of the user with the uid
+      $sql2 = "SELECT first FROM sb_account WHERE uid='$uid'";
+      $result2 = $conn->query($sql2);
+      $first = mysqli_fetch_assoc($result2);
 
-   // var_dump($first);
-    $first = implode(" ",$first);
+      //Convert array from database to string
+      $first = implode(" ",$first);
 
-    $_SESSION["first"] = $first;
-  //  echo $_SESSION["first"];
+      //Set session first name
+      $_SESSION["first"] = $first;
 
+     //set level for the session (normal user or admin)
+      $level = mysqli_real_escape_string($conn, $level);
+      $sql3 = "SELECT level FROM sb_account WHERE uid='$uid'";
+      $result3 = $conn->query($sql3);
+      $level = mysqli_fetch_assoc($result3);
+      $level = implode(" ",$level);
+      $_SESSION["level"] = $level;
+
+      //redirect to inplannen page
       header("location: inplannen.php");
 
   } else
+    //error if password is incorrect
     $passError = "Your Login Name or Password is invalid";
-
-
-}
+  }
 }
 ?>
 
@@ -62,7 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <link href="cssb/simple-sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
   <meta charset="UTF-8">
-  <title></title>
+  <title>Slotboom</title>
 </head>
 <body>
 
@@ -77,10 +96,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
           Slotboom
         </a>
       </li>
-      <li id="selected">
-
+      <li>
         <a  href="index.php">Home</a>
-
       </li>
       <li>
         <a href="over.php">Over</a>
@@ -95,27 +112,31 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <a href="contact.php">Contact</a>
       </li>
 
-      <li>
-        <a id="sidebar-login" href="login.php"><?php
+      <li id="selected">
+        <a id="sidebar-login" href="login.php">
+          <?php
+          //Show the name of the user when logged in
           if (isset($_SESSION["uid"])) {
-            echo "Hallo, "  .$_SESSION["first"];
+            echo "Hallo "  .$_SESSION["first"];
 
           }else{
             echo "Log in";
           }
-
-          ?></a>
+          ?>
+        </a>
       </li>
       <li>
-        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+        <a id="sidebar-aanmelden"  href="aanmelden.php">
+          <?php
+          //show the sign up button or log out button
           if (isset($_SESSION["uid"])) {
             echo "Uitloggen";
 
           }else{
             echo "Aanmelden";
           }
-
-          ?></a>
+          ?>
+        </a>
       </li>
     </ul>
   </div>
@@ -126,18 +147,21 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="col-md-2"></div>
     <div id="jumbo" class="col-md-9 jumbotron"><h3>Log in </h3>
       <form role="form" method="post" action=login.php>
-      <div class="form-group">
+        <!-- Username input field -->
+        <div class="form-group">
         <label for="user">Gebruikersnaam</label>
         <input type="text" class="form-control" name="user" value="">
         <span class="error"></span>
       </div>
-      <div class="form-group">
+        <!-- password input field -->
+        <div class="form-group">
         <label for="password">Wachtwoord</label>
-        <input type="text" class="form-control" name="password" >
+        <input type="password" class="form-control" name="password" >
         <span class="error">* <?php echo $passError;?></span>
 
       </div>
-      <div class="form-group">
+        <!-- submit button -->
+        <div class="form-group">
         <div class="col-sm-offset-1 col-sm-9">
           <button type="submit" name="submit"  class="btn btn-default" value="login">Log in</button>
         </div>
@@ -145,6 +169,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
     <div class="col-md-1"></div>
     <!-- /#sidebar-wrapper -->
+  </div>
 
+  <div class="footer"><p>&copy; Copyright 2016 Rijschool Frans Slotboom | KVK 24251557 | <a href="admin.php">Admin</a></p></div>
 </body>
 </html>

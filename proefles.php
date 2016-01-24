@@ -5,14 +5,14 @@ session_start();
 $nameErr = $emailErr = $addressErr = $cityErr = $phoneErr = "";
 $first = $email = $last = $comment = $phone = $city = $address = $zipcode = "";
 
-
+//protect against SQL injection, strip unnecessary characters
 function test_input($data) {
   $data = trim($data);
   $data = stripslashes($data);
   $data = htmlspecialchars($data);
   return $data;
 }
-
+//validation of input data
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
   if (empty($_POST["first"])) {
     $nameErr = "Naam is verplicht";
@@ -80,13 +80,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
   }
+
+  //Execute query when submit button is pressed
   if(isset($_POST['submit'])) {
 
+  //Database Settings
   include_once 'php/dbconfig.php';
 
 
 
-
+    //protection against SQL injection
     $first = mysqli_real_escape_string($conn, $first);
     $last = mysqli_real_escape_string($conn, $last);
     $address = mysqli_real_escape_string($conn, $address);
@@ -97,7 +100,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
 
-
+  //Query to insert data into database
   $sql = "INSERT INTO sb_proefles (first, last, address, zipcode, city, email, phone, comment)
 VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', '$comment')";
 
@@ -105,9 +108,7 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
  echo '<script type="text/javascript">alert("New record created successfully");</script>';
   } else {
    echo '<script type="text/javascript">alert("Error");</script>';
- // echo   "Error: " . $sql . "<br>" . $conn->error;
  }
-
   $conn->close();
 }
 
@@ -123,7 +124,7 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
   <link href="cssb/simple-sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
   <meta charset="UTF-8">
-  <title></title>
+  <title>Slotboom</title>
 </head>
 <body>
 
@@ -138,15 +139,13 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
           Slotboom
         </a>
       </li>
-      <li id="selected">
-
+      <li>
         <a  href="index.php">Home</a>
-
       </li>
       <li>
         <a href="over.php">Over</a>
       </li>
-      <li>
+      <li id="selected">
         <a href="proefles.php">Proefles</a>
       </li>
       <li>
@@ -155,28 +154,31 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
       <li>
         <a href="contact.php">Contact</a>
       </li>
-
       <li>
-        <a id="sidebar-login" href="login.php"><?php
+        <a id="sidebar-login" href="login.php">
+          <?php
+          //Show the name of the user when logged in
           if (isset($_SESSION["uid"])) {
-            echo "Hallo, "  .$_SESSION["first"];
+            echo "Hallo "  .$_SESSION["first"];
 
           }else{
             echo "Log in";
           }
-
-          ?></a>
+          ?>
+        </a>
       </li>
       <li>
-        <a id="sidebar-aanmelden"  href="aanmelden.php"><?php
+        <a id="sidebar-aanmelden"  href="aanmelden.php">
+          <?php
+          //show the sign up button or log out button
           if (isset($_SESSION["uid"])) {
             echo "Uitloggen";
 
           }else{
             echo "Aanmelden";
           }
-
-          ?></a>
+          ?>
+        </a>
       </li>
     </ul>
   </div>
@@ -198,67 +200,70 @@ VALUES ('$first', '$last', '$address', '$zipcode', '$city', '$email', '$phone', 
       </div>
       <div class="row">
       <div class="col-md-1"></div>
-      <div class="col-md-4">
+      <div class="col-md-5">
+
+        <!-- Form -->
         <form role="form" method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+          <!-- Name -->
           <div class="form-group">
             <label for="first">Naam</label>
             <input type="text" class="form-control" name="first" value="<?php echo $first;?>">
             <span class="error">* <?php echo $nameErr;?></span>
           </div>
+          <!-- Last name -->
           <div class="form-group">
             <label for="last">Achternaam</label>
             <input type="text" class="form-control" name="last" value="<?php echo $last;?>">
             <span class="error">* <?php echo $nameErr;?></span>
           </div>
+          <!-- Address -->
           <div class="form-group">
             <label for="address">Adres</label>
             <input type="text" class="form-control" name="address" value="<?php echo $address;?>">
             <span class="error">* <?php echo $addressErr;?></span>
           </div>
+          <!-- zipcode -->
           <div class="form-group">
             <label for="zipcode">Postcode</label>
             <input type="text" class="form-control" name="zipcode" value="<?php echo $zipcode;?>">
-
           </div>
+          <!-- City -->
           <div class="form-group">
             <label for="city">Woonplaats</label>
             <input type="text" class="form-control" name="city" value="<?php echo $city;?>">
             <span class="error">* <?php echo $cityErr;?></span>
           </div>
+          <!-- Email -->
           <div class="form-group">
             <label for="email">Email adres</label>
             <input type="email" class="form-control" name="email" value="<?php echo $email;?>">
             <span class="error">* <?php echo $emailErr;?></span>
           </div>
+          <!-- Phone -->
           <div class="form-group">
             <label for="phone">Telefoon</label>
             <input type="phone" class="form-control" name="phone" value="<?php echo $phone;?>">
             <span class="error">* <?php echo $phoneErr;?></span>
           </div>
+          <!-- Comment -->
           <div class="form-group">
             <label for="comment">Comment:</label>
             <textarea class="form-control" rows="4" name="comment"></textarea>
           </div>
-
           </div>
+        <!-- Submit button -->
         <div class="form-group">
           <div class="col-sm-offset-1 col-sm-9">
             <button type="submit" name="submit"  class="btn btn-default" value="aanmelden">Inschrijven</button>
           </div>
         </div>
         </form>
-
-
-
       </div>
-      <div class="col-md-7"></div>
+      <div class="col-md-6"></div>
     </div>
-
-
-
     </div>
     <div class="col-md-1"></div>
     <!-- /#sidebar-wrapper -->
-
+  <div class="footer"><p>&copy; Copyright 2016 Rijschool Frans Slotboom | KVK 24251557 | <a href="admin.php">Admin</a></p></div>
 </body>
 </html>
