@@ -39,11 +39,7 @@ if ($_SESSION["uid"] == "") {
 
                 } else {
                     echo '<script type="text/javascript">alert("Error");</script>';
-<<<<<<< HEAD
 
-=======
-                    // echo   "Error: " . $sql . "<br>" . $conn->error;
->>>>>>> origin/master
                 }
                 //close database
                 $conn->close();
@@ -71,14 +67,8 @@ if ($_SESSION["uid"] == "") {
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
-<<<<<<< HEAD
     <meta charset="UTF-8">
     <title>Slotboom</title>
-=======
-
-    <meta charset="UTF-8">
-  <title></title>
->>>>>>> origin/master
 </head>
 <body>
 
@@ -206,11 +196,7 @@ if ($_SESSION["uid"] == "") {
                     echo '<br>';
                     $starttime = strtotime("+1 hour", $starttime);
                 }
-<<<<<<< HEAD
             ?>
-=======
-                ?>
->>>>>>> origin/master
         </select>
             <br>
             <button type="submit" name="submit"  class="btn btn-default" value="inplannen">Inplannen</button>
