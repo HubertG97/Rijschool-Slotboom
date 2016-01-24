@@ -12,7 +12,11 @@ session_start();
   <link href="cssb/simple-sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <title>Slotboom</title>
+=======
+  <title></title>
+>>>>>>> origin/master
 </head>
 <body>
 <div id="fb-root"></div>
@@ -88,6 +92,7 @@ session_start();
       <!-- Homepage content -->
       <h2>Welkom bij rijschool Slotboom!</h2>
       <br>
+<<<<<<< HEAD
       <p>Wil je beginnen met rijlessen, maar weet je nog niet welke rijschool je gaat kiezen?</p>
       <p>Ben jij op zoek naar een rijschool met veel ervaring? Een instructeur met veel geduld en aandacht?</p>
       <p>Dan is rijschool Slotboom de juiste keus!</p>
@@ -96,6 +101,16 @@ session_start();
       <p>Er wordt gereden in een Mercedes B-klasse in de bovengenoemde regio's.</p>
       <p>Het startpakket bestaat uit 12 lessen met theorieboek en een online oefenomgeving.</p>
       <p>Eventueel kan er een lespakket samengesteld worden afhankelijk van aanvangsniveau, na overleg
+=======
+      <p>Wil je beginnen met rijlessen maar weet je nog niet welke rijschool je gaat kiezen?</p>
+      <p>Ben jij op zoek naar een rijschool met veel ervaring? En een instructeur met veel geduld en aandacht?</p>
+      <p>Dan is rijschool Slotboom de juiste keus!</p>
+      <p>Met al bijna 40 jaar ervaring in de regio Rotterdam, Rhoon, Ridderkerk en Barendrecht zal je gegarandeerd slagen!</p>
+      <br>
+      <p>Er word gereden in een Mercedes B-klasse in de bovengenoemde regio's</p>
+      <p>Het startpakket bestaat uit 12 lessen met theorieboek en een online oefenomgeving</p>
+      <p>Eventueel kan er een les pakket samengesteld worden afhankelijk van aanvangs niveau, in overleg
+>>>>>>> origin/master
         te bepalen bij uw eerste les.</p>
 
 

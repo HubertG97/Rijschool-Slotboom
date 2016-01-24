@@ -157,7 +157,11 @@ VALUES ('$user', '$password', '$first', '$last', '$address', '$zipcode', '$city'
   <link href="cssb/simple-sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <title>Slotboom</title>
+=======
+  <title></title>
+>>>>>>> origin/master
 </head>
 <body>
 

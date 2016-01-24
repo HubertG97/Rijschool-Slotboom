@@ -19,7 +19,11 @@ if($_SESSION["level"] == "2"){
   <link href="cssb/simple-sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <title>Slotboom</title>
+=======
+  <title></title>
+>>>>>>> origin/master
 </head>
 <body>
 
@@ -98,7 +102,11 @@ if($_SESSION["level"] == "2"){
           <h3>Rijlessen</h3>
           <br>
           <br>
+<<<<<<< HEAD
           <!-- Tabel with view of all the appointments that are made /-->
+=======
+          //Tabel with oerview of all the appointments that are made
+>>>>>>> origin/master
           <table id="table1">
             <thead>
             <tr>

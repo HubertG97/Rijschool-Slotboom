@@ -86,7 +86,11 @@ if(isset($_POST['submit'])) {
   <link href="cssb/simple-sidebar.css" rel="stylesheet">
   <link rel="stylesheet" href="cssb/main.css" type="text/css">
   <meta charset="UTF-8">
+<<<<<<< HEAD
   <title>Slotboom</title>
+=======
+  <title></title>
+>>>>>>> origin/master
 </head>
 <body>
 
@@ -112,7 +116,11 @@ if(isset($_POST['submit'])) {
         <a href="inplannen.php">Rijles plannen</a>
       </li>
       <li id="selected">
+<<<<<<< HEAD
         <a href="contact.php">Contact</a>
+=======
+        <a href=".php">Contact</a>
+>>>>>>> origin/master
       </li>
       <li>
         <a id="sidebar-login" href="login.php">
