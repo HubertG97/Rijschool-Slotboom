@@ -96,8 +96,8 @@ session_start();
           <p>Startpakket:       499,00 Euro (12 lessen incl theorie)</p>
           <p>Lesprijs:          39,00 Euro</p>
           <p>Examen:            250,00 Euro</p>
-          <p>Herexamen          240,00 Euro</p>
-          <p>Tussentijdse toets 210,00 Euro</p>
+          <p>Herexamen:         240,00 Euro</p>
+          <p>Tussentijdse toets:210,00 Euro</p>
       </div>
       <div class="col-md-4"></div>
     </div>
